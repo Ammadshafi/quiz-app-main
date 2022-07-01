@@ -1,33 +1,30 @@
-// console.log("kkj");
 let cacheData = "app";
 this.addEventListener("install", (event) => {
     event.waitUntil(
         caches.open(cacheData).then((cache) => {
             cache.addAll([
-                '/index.html',
                 '/',
-                '/firebase-messaging-sw',
+                "/static/js/main.e97b3277.js",
+                "/static/css/main.1798aa73.css",
+                "https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js",
+                "https://www.gstatic.com/firebasejs/8.2.2/firebase-messaging.js",
                 "/favicon.ico",
-                "/manifest.json",
                 "/logo192.png",
-                '/static/js/bundle.js',
-                '/bootstrap.min.css',
+                'https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap'
+
 
             ])
-        })
+        }).catch((error)=>console.log("failed",error))
     )
 })
-this.addEventListener("fetch", (event) => {
-
-
-    if (!navigator.onLine) {
+this.addEventListener( "fetch", (event) => {
      
          event.waitUntil(
         event.respondWith(
             caches.match(event.request).then((resp) => {
-      return resp
+            return resp
                 
             }).catch((e)=>console.log("not respond"))
         ))
-    }
-}) 
+    
+})

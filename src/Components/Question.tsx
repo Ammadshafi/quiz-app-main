@@ -12,10 +12,11 @@ type userAnswer={
   useranswer:string,
 }
 const Question: React.FC<props> = ({ api }) => {
+  const[gameOver,setGameOver]=useState(false)
     const [quesnum,setquesnum]=useState<number>(0)
     const[dataobj,setdataobj]=useState<ReturnApi>(api[quesnum])
     const [userAnswer,setuserAnswer]=useState<userAnswer>()
-    const[ score,setscore]=useState<number>(-1)
+    const[ score,setscore]=useState<number>(0)
   useEffect(()=>{
     setdataobj(api[quesnum])
     if(userAnswer?.answer==userAnswer?.useranswer){
@@ -42,16 +43,11 @@ if (quesnum+1<api.length) {
   setquesnum(quesnum+1)
   
 } else {
-  setquesnum(786)
-}
-
-    
-  
-   
-  
+  setGameOver(true)
+} 
   }
   {
-    if(quesnum==786){
+    if(gameOver){
     return( <div className="question-card shadow p-5 text-center">
     {score==api.length-5?<h1 className="text-primary text-capitalze shadow">Better but not best </h1>:score>=api.length-3?<h1 className="text-success text-uppercase shadow">hyyy!!you won the game</h1>:<h1 className="text-danger text-capitalize shadow">Opps!!you lose the game</h1>}
     <h2>{score}</h2>

@@ -1,6 +1,7 @@
 {
   "name": "quiz-app",
   "version": "0.1.0",
+  "proxy":"https://quiz-app-pwa-panacloud-ammad.surge.sh",
   "type": "module",
   "private": true,
   "dependencies": {
